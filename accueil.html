@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<!accueil>
+<h1>Amusez-vous sur notre site !</h1>
+
+<p id="parag_description">
+	Laissez-vous tenter par une partie !
+	<br>
+	Utilisez le menu à gauche pour découvrir les fonctionnalités de ce site.
+</p>
+
+<br>
+
+<h2> Objectifs du jeu </h2>
+<p> Votre mission est de recouvrir toutes les cases cibles de la grille en utilisant les briques disponibles dans la pioche. 
+<br>
+Tentez de le faire en le moins de tours possible !</p>
+
+<br>
+
+<h2> Déroulement du jeu </h2>
+<p> La grille est composée de cases vides et de cases cibles (indiquées par des motifs hachurés) : les cases cibles sont celles que vous devez recouvrir.
+<br>
+La pioche contient 4 briques disponibles : chaque brique a des dimensions et doit être placée correctement pour recouvrir les cases cibles. </p>
+
+<br>
+
+<h2> Comment jouer ? </h2>
+<h4> A chaque tour : </h4>
+<ul>
+	<li> Choisissez une brique dans la pioche. </li>
+	<li> Décidez de votre action :
+	<br>
+-> Placer la brique sur la grille si elle peut recouvrir des cases cibles encore disponibles.
+<br>
+-> Défausser la brique pour la remplacer par une nouvelle brique tirée aléatoirement. </li> </ul>
+
+<h4> Placement des briques : </h4>
+<ul> 
+    <li> Une brique peut être placée uniquement si toutes ses cases recouvrent des cases cibles disponibles.
+<br>
+Par exemple, une brique de 2×3 nécessite 6 cases cibles libres. </li> </ul>
+
+<h4> Défausse </h4>
+<ul>
+    <li> Si une brique ne convient pas, vous pouvez la défausser.
+<br>
+	     Elle sera remplacée par une nouvelle brique tirée dans la base de données. </li>
+</ul>
+
+<h4> Fin du jeu et score </h4>
+<ul>
+    <li> Le jeu se termine lorsque toutes les cases cibles sont recouvertes. </li>
+    <li> Votre score correspond au nombre de tours nécessaires pour atteindre cet objectif. </li>
+    <li> Objectif : Réalisez le score le plus bas possible ! </li>
+</ul>
+
+<br>
+
+      {% include 'afficher.html' %}
+	  
+	 
+
+<br>
+<br>
+<br>
+<br>
+	  {% include 'grille.html' %}
+<br>
+<br>
+{% endblock %}

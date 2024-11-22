@@ -1,0 +1,14 @@
+
+    <h1>Pioche de Briques</h1>
+    <form action="/pioche2" method="POST">
+        <fieldset>
+            <legend>Choisissez une brique :</legend>
+            {% for brique in briques %}
+                <input type="radio" id="{{ REQUEST_VARS['idB'] }}" name="brique" value="{{ REQUEST_VARS['idB'] }}">
+                <label for="{{REQUEST_VARS['idB'] }}">
+                    {{ brique[1] }} - {{ brique[2] }} x {{ brique[3] }} - {{ brique[4] }}
+                </label><br>
+            {% endfor %}
+        </fieldset>
+        <button type="submit">Valider</button>
+    </form>

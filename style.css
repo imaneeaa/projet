@@ -1,0 +1,92 @@
+body {
+    background-color: #FFFFFF;
+}
+
+img {
+	position : absolute;
+}
+
+header,
+nav,
+main,
+footer {
+    padding: 1em 0;
+}
+
+header {
+    background-color: #6dff81 ;
+	text-align: center;
+    border-radius: 1em;
+}
+
+#div-central {
+    display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+    margin: auto;
+	box-sizing: border-box;
+	height: 100%;
+}
+
+nav {
+	flex : 2;
+    background-color: #759081 ;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+	margin-left: 2em;
+    line-height: 2em;
+}
+
+nav > ul {
+	padding-left: 0.5em;
+}
+
+nav a {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+nav a:visited {
+    color: #0000FF;
+    text-decoration: none;
+}
+
+main {
+	flex : 10;
+    background-color: #FFFFFF;
+    padding-left: 3em;
+}
+
+footer {
+	display: flex;
+	text-align: center;
+	justify-content: space-around;
+    background-color: #6dff81;
+    border-radius: 1em;
+}
+
+/* Style pour le tableau */
+table {
+    border-collapse: collapse; /* Fusionne les bordures des cellules */
+    margin: 0 auto;
+	width : 25%;
+}
+
+/* Style pour chaque cellule */
+td {
+    width: 70px; /* Largeur des cellules */
+    height: 20px; /* Hauteur des cellules */
+    border: 1px solid black; /* Bordure noire pour chaque cellule */
+    background-color: white; /* Fond blanc par défaut */
+}
+
+.target {
+    background: repeating-linear-gradient(
+      -50deg,          /* Angle de hachures */
+      gray,      /* Couleur de départ */
+      gray 10px, /* Largeur de la première bande */
+      white 10px,     /* Largeur de la deuxième bande */
+      white 20px      /* Répétition après 20px */
+  );
+}
+
