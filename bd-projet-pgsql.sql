@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS projet;
 SET search_path TO projet;
 
 CREATE TABLE usine (
-    idU ='1' SERIAL PRIMARY KEY,
+    idU SERIAL PRIMARY KEY,
     ville VARCHAR(50),
     pays VARCHAR(50)
 );
@@ -14,10 +14,10 @@ CREATE TABLE brique (
     largeur integer,
     hauteur float,
     couleur varchar(20), 
-    nomB ='fondamento' VARCHAR(50),
-    forme = 'rectangulaire'  VARCHAR(50),
-    mots_cles ='positionnement' TEXT ,
-    idU ='1' INTEGER    
+    nomB VARCHAR(50),
+    forme VARCHAR(50),
+    mots_cles TEXT ,
+    idU INTEGER    
 );
 
 CREATE TABLE config (
@@ -123,7 +123,7 @@ CREATE TABLE substituer (
 CREATE TABLE fabriquer (
     dateFab DATE,
     quantite FLOAT,
-    idU ='1' INTEGER,
+    idU INTEGER,
     idB INTEGER,
     PRIMARY KEY (idU, idB)
 );
