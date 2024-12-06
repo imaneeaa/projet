@@ -1,6 +1,6 @@
 DROP SCHEMA IF EXISTS projet CASCADE;
 CREATE SCHEMA IF NOT EXISTS projet;
-SET search_path TO legos;
+SET search_path TO projet;
 
 CREATE TABLE usine (
     idU SERIAL PRIMARY KEY,
