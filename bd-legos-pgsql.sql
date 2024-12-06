@@ -1,5 +1,5 @@
-DROP SCHEMA IF EXISTS legos CASCADE;
-CREATE SCHEMA IF NOT EXISTS legos;
+DROP SCHEMA IF EXISTS projet CASCADE;
+CREATE SCHEMA IF NOT EXISTS projet;
 SET search_path TO legos;
 
 CREATE TABLE usine (
@@ -10,14 +10,14 @@ CREATE TABLE usine (
 
 CREATE TABLE brique (
     idB SERIAL PRIMARY KEY,
-    idU INTEGER,
-    nomB VARCHAR(50),
     longueur integer,
     largeur integer,
     hauteur float,
+    couleur varchar(20), 
+    nomB VARCHAR(50),
     forme VARCHAR(50),
     mots_cles TEXT,
-    couleur varchar(20)
+    idU INTEGER,    
 );
 
 CREATE TABLE config (
