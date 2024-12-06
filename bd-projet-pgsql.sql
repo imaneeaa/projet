@@ -17,7 +17,7 @@ CREATE TABLE brique (
     nomB VARCHAR(50),
     forme VARCHAR(50),
     mots_cles TEXT,
-    idU INTEGER,    
+    idU INTEGER     
 );
 
 CREATE TABLE config (
