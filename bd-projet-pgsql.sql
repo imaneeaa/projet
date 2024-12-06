@@ -123,7 +123,7 @@ CREATE TABLE substituer (
 CREATE TABLE fabriquer (
     dateFab DATE,
     quantite FLOAT,
-    idU INTEGER,
+    idU ='1' INTEGER,
     idB INTEGER,
     PRIMARY KEY (idU, idB)
 );
