@@ -2,48 +2,73 @@ import psycopg
 from psycopg import sql
 from logzero import logger
 
-def get_connexion(host, username, password, db, schema):
-  try:
-      connexion = psycopg.connect(host= bd-pedago.univ-lyon1.fr, user=p2216780, password=Dodge10Petted, dbname=legos, autocommit=True) 
-      cursor = psycopg.ClientCursor(connexion)
-      cursor.execute("SET search_path TO %s", [legos])
-  except Exception as e:
-      print(e)
-      return None
-  return connexion
-
-
-def get_cinq_couleurs(connexion):
-    query= 'select couleur, count(idB) from piece group by ?;'
+def execute_select_query(connexion, query, params=[]):
+    """
+    Méthode générique pour exécuter une requête SELECT (qui peut retourner plusieurs instances).
+    Utilisée par des fonctions plus spécifiques.
+    """
+    with connexion.cursor() as cursor:
+        try:
+            cursor.execute(query, params)
+            result = cursor.fetchall()
+            return result 
+        except psycopg.Error as e:
+            logger.error(e)
+    return None
+    
+# Statistiques
+def get_nb_instance_b(connexion):
+    query = 'select count(*) from projet.brique;'
     return execute_select_query(connexion, query)
     
-def get_nb_instances_joueuse(connexion):
-    query= 'select count(*) from joueuse;'
+def get_nb_instance_j(connexion):
+    query = 'select count(*) from projet.joueuse;'
     return execute_select_query(connexion, query)
     
-def get_nb_instances_partie(connexion):
-    query= 'select count(*) from partie;'
+def get_nb_instance_p(connexion):
+    query = 'select count(*) from projet.partie;'
     return execute_select_query(connexion, query)
     
-def get_nb_instances_tour(connexion):
-    query= 'select count(*) from tour;'
-    return execute_select_query(connexion, query)
-    
-
-def top_5(connexion):
-    query='select couleur, COUNT(*) as nombre_briques from briques group by couleur order by nombre_briques desc limit 5;'
+def top5(connexion):
+    query = 'SELECT pcouleur, COUNT(*) AS nb_briques FROM projet.brique GROUP BY couleur ORDER BY nb_briques DESC LIMIT 5;'
     return execute_select_query(connexion,query)
-    
 
-def scores(connexion):
-    query='select nomJ, MIN(score), MAX(score) from joueuse group by idJ;'
-    return execute_select_query(connexion,query)
-    
-    
-def get_pioche():
-    return [
-        {"id": 1, "nom": "Brique1", "couleur": "Bleu", "longueur": 2, "largeur": 1, "forme": "rectangle"},
-        {"id": 2, "nom": "Brique2", "couleur": "Rouge", "longueur": 1, "largeur": 2, "forme": "carré"},
-        {"id": 3, "nom": "Brique3", "couleur": "Vert", "longueur": 2, "largeur": 2, "forme": "rectangle"},
-        {"id": 4, "nom": "Brique4", "couleur": "Jaune", "longueur": 1, "largeur": 1, "forme": "triangle"},
-    ]
+import random
+
+def get_random_briques(connexion, idB_exclus=[]):
+    # Choisis aléatoirement 4 briques pas encore utilisées dont la longueur et/ou la largeur <=2 
+    condition = ""
+    if idB_exclus:
+        condition = f"AND idb NOT IN ({','.join(map(str, idB_exclus))})"
+
+    query = f"""
+        SELECT idB, nomB, longueur, largeur, couleur 
+        FROM brique 
+        WHERE longueur <= 2 OR largeur <= 2 
+        {condition}
+        ORDER BY RANDOM()
+        LIMIT 4;
+    """
+    return execute_select_query(connexion, query)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
